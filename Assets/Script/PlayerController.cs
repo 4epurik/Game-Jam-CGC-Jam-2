@@ -20,20 +20,20 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-       /*
-        if (SwipeController.swipeRight)
-        {
-            if (lineToMove < 2)
-                lineToMove++;
-        }
+        /*
+         if (SwipeController.swipeRight)
+         {
+             if (lineToMove < 2)
+                 lineToMove++;
+         }
 
-        if (SwipeController.swipeLeft)
-        {
-            if (lineToMove > 0)
-                lineToMove--;
-        }
-       */
-        if (Input.GetMouseButtonUp(0))
+         if (SwipeController.swipeLeft)
+         {
+             if (lineToMove > 0)
+                 lineToMove--;
+         }
+        */
+        if (Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Space))
         {
             // if (controller.isGrounded)
             Debug.Log("Свайп сработал");
