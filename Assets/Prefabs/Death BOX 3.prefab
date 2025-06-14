@@ -163,13 +163,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe4b866a7875844b9eaba0f4e546373, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4099437525087465225}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe4b866a7875844b9eaba0f4e546373, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8472609558887981948}
   m_SourcePrefab: {fileID: 100100000, guid: abe4b866a7875844b9eaba0f4e546373, type: 3}
 --- !u!4 &6282083627425461254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: abe4b866a7875844b9eaba0f4e546373, type: 3}
   m_PrefabInstance: {fileID: 5810990124888003565}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6657905104790597308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: abe4b866a7875844b9eaba0f4e546373, type: 3}
+  m_PrefabInstance: {fileID: 5810990124888003565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4099437525087465225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657905104790597308}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.35, z: 0}
+--- !u!114 &8472609558887981948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657905104790597308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad2c667607c00342ac2bcc3bf5c05c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
 --- !u!1001 &6315308315160143944
 PrefabInstance:
   m_ObjectHideFlags: 0

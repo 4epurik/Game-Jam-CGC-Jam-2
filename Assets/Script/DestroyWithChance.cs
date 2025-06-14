@@ -7,6 +7,6 @@ public class DestroyWithChance : MonoBehaviour
 
     private void Start()
     {
-        if (Random.value > ChanceOfStaying) Destroy(gameObject);
+       // if (Random.value > ChanceOfStaying) Destroy(gameObject);
     }
 }

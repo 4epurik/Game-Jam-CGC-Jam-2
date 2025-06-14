@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(dir * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    /*private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Enemy"))
         {
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
             // Запустить перезапуск с задержкой
             //Invoke(nameof(RestartGame), restartDelay);
         }
-    }
+    }*/
     //private void RestartGame()
     //{
     //    Time.timeScale = 1f; // Восстановить время
