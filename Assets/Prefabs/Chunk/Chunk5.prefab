@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Begin: {fileID: 4938035685185379042}
   End: {fileID: 2589141142600240883}
+  _coin: {fileID: 2020066087435559555, guid: 585297b2be7910348b266fcda32fb1f8, type: 3}
 --- !u!1 &5982115941004421539
 GameObject:
   m_ObjectHideFlags: 0

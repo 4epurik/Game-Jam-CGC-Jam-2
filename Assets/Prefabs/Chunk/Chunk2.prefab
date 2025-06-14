@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Begin: {fileID: 7141635514454750039}
   End: {fileID: 4224079804429240124}
+  _coin: {fileID: 2020066087435559555, guid: 585297b2be7910348b266fcda32fb1f8, type: 3}
 --- !u!1001 &592976731907498432
 PrefabInstance:
   m_ObjectHideFlags: 0

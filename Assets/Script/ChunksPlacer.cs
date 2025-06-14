@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Script;
 using UnityEngine;
 
 public class ChunksPlacer : MonoBehaviour
 {
+    [SerializeField] private CoinCollector _coinCollector;
     public Transform Player;
     public Chunk[] ChunkPrefabs;
     public Chunk FirstChunk;
 
     private List<Chunk> spawnedChunks = new List<Chunk>();
+    private MeshRenderer _renderer;
 
     private void Start()
     {
@@ -25,8 +28,11 @@ public class ChunksPlacer : MonoBehaviour
 
     private void SpawnChunk()
     {
-        Chunk newChunk = Instantiate(ChunkPrefabs[Random.Range(0,ChunkPrefabs.Length)]);
-        newChunk.transform.position = spawnedChunks[spawnedChunks.Count - 1].End.position - newChunk.Begin.localPosition;
+        int minChunk = (_coinCollector.GetCoins() > 50) ? 3 : 0;
+        Chunk newChunk = Instantiate(ChunkPrefabs[Random.Range(minChunk,ChunkPrefabs.Length)]);
+        // Chunk newChunk = Instantiate(ChunkPrefabs[3]);
+        newChunk.transform.position = spawnedChunks[spawnedChunks.Count - 1].End.transform.position - newChunk.Begin.localPosition;
+        // SetChankPosition(spawnedChunks[spawnedChunks.Count - 1], newChunk);
         spawnedChunks.Add(newChunk);
 
         if (spawnedChunks.Count >= 3)
