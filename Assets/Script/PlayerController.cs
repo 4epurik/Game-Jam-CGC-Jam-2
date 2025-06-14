@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -8,87 +7,85 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 dir;
     private int liveScore = 1;
-    public GameObject gameOver;
-    public float restartDelay = 3f;
+
+    [Header("Settings")]
     [SerializeField] private int speed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity;
+    [SerializeField] private float restartDelay = 3f;
 
-    //private int lineToMove = 1;
-   // public float lineDistance = 4;
+    [Header("Events")]
+    [SerializeField] private UnityEvent onGameStarted; // Событие при старте игры
+    [SerializeField] private UnityEvent onGameOver;   // Событие при проигрыше
+
+    [Header("References")]
+    [SerializeField] private GameObject gameOverUI;
+
+    [Header("UI Settings")]
+    [SerializeField] private GameObject menuUI; // Перетащите сюда меню из сцены
+
+    private bool isGameStarted = false;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        dir = Vector3.zero;
+        Time.timeScale = 0f; // Игра начинается на паузе
     }
+
+
 
     private void Update()
     {
-        /*
-         if (SwipeController.swipeRight)
-         {
-             if (lineToMove < 2)
-                 lineToMove++;
-         }
+        if (!isGameStarted) return; // Блокировка управления до старта
 
-         if (SwipeController.swipeLeft)
-         {
-             if (lineToMove > 0)
-                 lineToMove--;
-         }
-        */
         if (Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Space))
         {
-            // if (controller.isGrounded)
-            Debug.Log("Свайп сработал");
-                Jump();
+            Jump();
         }
-        //if (liveScore==0)
-        //{
-        //    gameObject.SetActive(true);
-        //    Time.timeScale = 0f;
-
-        //    // Запустить перезапуск с задержкой
-        //    Invoke(nameof(RestartGame), restartDelay);
-        //}
-       /* Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
-        if (lineToMove == 0)
-            targetPosition += Vector3.left * lineDistance;
-        else if (lineToMove == 2)
-            targetPosition += Vector3.right * lineDistance;
-
-        transform.position = targetPosition;*/
-    }
-
-    private void Jump()
-    {
-        dir.y = jumpForce;
     }
 
     void FixedUpdate()
     {
+        if (!isGameStarted) return;
+
         dir.z = speed;
         dir.y += gravity * Time.fixedDeltaTime;
         controller.Move(dir * Time.fixedDeltaTime);
     }
 
-    /*private void OnTriggerEnter(Collider collision)
+    // Вызывается кнопкой Start в UI
+    public void StartGame()
     {
-        if (collision.CompareTag("Enemy"))
-        {
-            Debug.Log("Сvthnm");
-            //liveScore--;
-            gameOver.SetActive(true);
-            Debug.Log("Сvthnm1");
-            Time.timeScale = 0f;
+        isGameStarted = true;
+        Time.timeScale = 1f; // Снимаем паузу
+        onGameStarted.Invoke();
 
-            // Запустить перезапуск с задержкой
-            //Invoke(nameof(RestartGame), restartDelay);
+        isGameStarted = true;
+        Time.timeScale = 1f;
+
+        if (menuUI != null)
+            menuUI.SetActive(false); // Скрываем меню
+    }
+
+    private void Jump()
+    {
+        if (controller.isGrounded)
+        {
+            dir.y = jumpForce;
         }
-    }*/
-    //private void RestartGame()
-    //{
-    //    Time.timeScale = 1f; // Восстановить время
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //}
+    }
+
+    public void GameOver()
+    {
+        isGameStarted = false;
+        gameOverUI.SetActive(true);
+        onGameOver.Invoke();
+        Invoke(nameof(RestartGame), restartDelay);
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
