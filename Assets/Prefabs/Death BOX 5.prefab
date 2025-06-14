@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6596191660960751904}
   m_Layer: 0
-  m_Name: BOX_Jump2
+  m_Name: Death BOX 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
