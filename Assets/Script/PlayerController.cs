@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 dir;
     private int liveScore = 1;
+    [SerializeField] private GameObject backgroundMusic;
 
     [Header("Settings")]
     [SerializeField] private int speed;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
     public void StartGame()
     {
         isGameStarted = true;
+        backgroundMusic.SetActive(true);
         Time.timeScale = 1f; // Снимаем паузу
         onGameStarted.Invoke();
 
