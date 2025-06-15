@@ -1398,7 +1398,7 @@ Transform:
   m_GameObject: {fileID: 506789025}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1.459, z: 16.11}
+  m_LocalPosition: {x: 3, y: 1.69, z: 16.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 560787196}
   speed: 9
   jumpForce: 9
-  gravity: -30
+  gravity: -28
   restartDelay: 3
   onGameStarted:
     m_PersistentCalls:
@@ -1815,13 +1815,14 @@ GameObject:
   m_Component:
   - component: {fileID: 560787198}
   - component: {fileID: 560787197}
+  - component: {fileID: 560787199}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &560787197
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1835,7 +1836,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 05031b1dac3ed83468f086c6e949afc2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.529
-  m_Pitch: 2
+  m_Pitch: 1.5
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1846,9 +1847,9 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1933,6 +1934,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &560787199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560787196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56b3b203d4cd5841ad7ad8c9d90a698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstPlayInt: 0
+  musicSlider: {fileID: 0}
+  soundEffectsSlider: {fileID: 0}
+  musicFloat: 0
+  soundEffectsFloat: 0
+  musicAudio: {fileID: 560787197}
+  soundEffectsAudio: []
 --- !u!1 &617356287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,7 +3434,6 @@ MonoBehaviour:
   resumeButton: {fileID: 45937357}
   _coinCollector: {fileID: 1858661518}
   pauseKey: 27
-  audioManager: {fileID: 0}
   pauseMusicOnPause: 1
 --- !u!1 &1727887972
 GameObject:
@@ -3929,7 +3948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textCountCoins: {fileID: 895280449}
   player: {fileID: 506789032}
-  coinsPerSpeedBoost: 5
+  coinsPerSpeedBoost: 50
   speedIncreaseAmount: 3
   jumpIncreaseAmount: 3
 --- !u!114 &1872454076 stripped
