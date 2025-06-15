@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         // Настраиваем кнопку "Продолжить"
-        resumeButton.onClick.AddListener(TogglePause);
+        //resumeButton.onClick.AddListener(TogglePause);
 
         // Скрываем меню при старте
         if (pauseMenu != null)
