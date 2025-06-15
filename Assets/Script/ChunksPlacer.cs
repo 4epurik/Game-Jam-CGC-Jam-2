@@ -11,7 +11,6 @@ public class ChunksPlacer : MonoBehaviour
     public Chunk FirstChunk;
 
     private List<Chunk> spawnedChunks = new List<Chunk>();
-    private MeshRenderer _renderer;
 
     private void Start()
     {
@@ -30,9 +29,7 @@ public class ChunksPlacer : MonoBehaviour
     {
         int minChunk = (_coinCollector.GetCoins() > 50) ? 3 : 0;
         Chunk newChunk = Instantiate(ChunkPrefabs[Random.Range(minChunk,ChunkPrefabs.Length)]);
-        // Chunk newChunk = Instantiate(ChunkPrefabs[3]);
         newChunk.transform.position = spawnedChunks[spawnedChunks.Count - 1].End.transform.position - newChunk.Begin.localPosition;
-        // SetChankPosition(spawnedChunks[spawnedChunks.Count - 1], newChunk);
         spawnedChunks.Add(newChunk);
 
         if (spawnedChunks.Count >= 3)
