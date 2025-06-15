@@ -2,13 +2,14 @@
 using UnityEngine.UI;
 using System;
 using Script;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private Text coinsText;
-    [SerializeField] private Text timeText;
+    [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private Button resumeButton;
     [SerializeField] private CoinCollector _coinCollector;
 
@@ -70,7 +71,7 @@ public class PauseMenu : MonoBehaviour
         TimeSpan timeSpan = TimeSpan.FromSeconds(gameTime);
         string timeString = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
 
-        coinsText.text = $"Монеты: {_coinCollector.GetCoins().ToString()}";
+        coinsText.text = $": {_coinCollector.GetCoins().ToString()}";
         timeText.text = $"Время: {timeString}";
     }
 
