@@ -9,7 +9,8 @@ namespace Script
         [SerializeField] private PlayerController player;
         [SerializeField] private int coinsPerSpeedBoost = 10;
         [SerializeField] private int speedIncreaseAmount = 10;
-        private  static CoinCollector instance;
+        [SerializeField] private int jumpIncreaseAmount = 3;
+        private static CoinCollector instance;
         private int coinAmount = 0;
 
         private void Start()
@@ -61,6 +62,7 @@ namespace Script
             if (coinAmount == coinsPerSpeedBoost )
             {
                 player.IncreaseSpeed(speedIncreaseAmount);
+                player.IncreaseJump(jumpIncreaseAmount);
             }
         }
 
