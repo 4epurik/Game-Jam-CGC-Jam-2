@@ -19,7 +19,7 @@ public class ChunksPlacer : MonoBehaviour
 
     private void Update()
     {
-        if (Player.position.z > spawnedChunks[spawnedChunks.Count - 1].End.position.z - 40)
+        if (Player.position.z > spawnedChunks[spawnedChunks.Count - 1].End.position.z - 120)
         {
             SpawnChunk();
         }
@@ -29,7 +29,9 @@ public class ChunksPlacer : MonoBehaviour
     {
         int minChunk = (_coinCollector.GetCoins() > 50) ? 3 : 0;
         Chunk newChunk = Instantiate(ChunkPrefabs[Random.Range(minChunk,ChunkPrefabs.Length)]);
-        newChunk.transform.position = spawnedChunks[spawnedChunks.Count - 1].End.transform.position - newChunk.Begin.localPosition;
+        var oldChankPosition = spawnedChunks[spawnedChunks.Count - 1].End.transform.position;
+        var offsetZ = oldChankPosition.x + (newChunk.Begin.localPosition.x * newChunk.transform.localScale.x);
+        newChunk.transform.position = new Vector3(newChunk.transform.position.x, newChunk.transform.position.y, oldChankPosition.z + offsetZ);
         spawnedChunks.Add(newChunk);
 
         if (spawnedChunks.Count >= 3)
