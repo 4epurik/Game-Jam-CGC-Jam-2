@@ -58,7 +58,7 @@ namespace Script
         {
             coinAmount++;
             UpdateText();
-            if (coinAmount % coinsPerSpeedBoost == 0)
+            if (coinAmount == coinsPerSpeedBoost )
             {
                 player.IncreaseSpeed(speedIncreaseAmount);
             }
