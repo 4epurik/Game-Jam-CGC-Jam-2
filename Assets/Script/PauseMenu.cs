@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
 
     [Header("Audio Settings")]
-    [SerializeField] private AudioManager audioManager;
+   
     [SerializeField] private bool pauseMusicOnPause = true;
 
     private bool isPaused = false;
@@ -50,8 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     private void TogglePause()
     {
-        // Пауза музыки при включении паузы
-        HandleMusicPause(!isPaused);
+        
 
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0f : 1f;
@@ -65,8 +64,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
 
-        // Возобновление музыки при снятии паузы
-        HandleMusicPause(isPaused);
+        
     }
 
     // Обновление текста в UI
@@ -89,17 +87,5 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void HandleMusicPause(bool pause)
-    {
-        if (!pauseMusicOnPause || audioManager == null) return;
-
-        if (pause)
-        {
-            audioManager.musicAudio.Pause();
-        }
-        else
-        {
-            audioManager.musicAudio.UnPause();
-        }
-    }
+    
 }
