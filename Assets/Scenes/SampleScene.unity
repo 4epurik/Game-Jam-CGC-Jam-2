@@ -1440,6 +1440,8 @@ MonoBehaviour:
       m_Calls: []
   gameOverUI: {fileID: 0}
   menuUI: {fileID: 385589101}
+  timerObject: {fileID: 375764911}
+  coinsObject: {fileID: 1798282533}
 --- !u!114 &506789033
 MonoBehaviour:
   m_ObjectHideFlags: 0
