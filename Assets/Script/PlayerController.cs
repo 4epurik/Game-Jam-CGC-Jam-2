@@ -88,4 +88,9 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void IncreaseSpeed(int amount)
+    {
+        speed += amount;
+        Debug.Log("Speed increased! New speed: " + speed);
+    }
 }

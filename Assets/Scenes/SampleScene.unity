@@ -2114,6 +2114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textCountCoins: {fileID: 895280449}
+  player: {fileID: 506789032}
+  coinsPerSpeedBoost: 50
+  speedIncreaseAmount: 2
 --- !u!114 &1872454076 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3456840442924834347, guid: 0742d9d30e7c6d944905ce7bedec6a5c, type: 3}

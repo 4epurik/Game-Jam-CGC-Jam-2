@@ -6,6 +6,9 @@ namespace Script
     public class CoinCollector : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _textCountCoins;
+        [SerializeField] private PlayerController player;
+        [SerializeField] private int coinsPerSpeedBoost = 10;
+        [SerializeField] private int speedIncreaseAmount = 10;
         private  static CoinCollector instance;
         private int coinAmount = 0;
 
@@ -55,6 +58,10 @@ namespace Script
         {
             coinAmount++;
             UpdateText();
+            if (coinAmount % coinsPerSpeedBoost == 0)
+            {
+                player.IncreaseSpeed(speedIncreaseAmount);
+            }
         }
 
         public int GetCoins()
