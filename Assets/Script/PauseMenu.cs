@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using Script;
 using TMPro;
+using UnityEngine.Audio; 
 
 public class PauseMenu : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private bool pauseMusicOnPause = true;
 
     private bool isPaused = false;
     private float gameTime = 0f;
@@ -45,23 +50,23 @@ public class PauseMenu : MonoBehaviour
 
     private void TogglePause()
     {
+        // Пауза музыки при включении паузы
+        HandleMusicPause(!isPaused);
+
         isPaused = !isPaused;
-
-        // Ставим/снимаем паузу
         Time.timeScale = isPaused ? 0f : 1f;
-
-        // Показываем/скрываем меню
         pauseMenu.SetActive(isPaused);
 
-        // Обновляем UI при открытии меню
         if (isPaused)
         {
             UpdateUI();
         }
 
-        // Управление курсором
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+
+        // Возобновление музыки при снятии паузы
+        HandleMusicPause(isPaused);
     }
 
     // Обновление текста в UI
@@ -81,6 +86,20 @@ public class PauseMenu : MonoBehaviour
         if (isPaused)
         {
             TogglePause();
+        }
+    }
+
+    private void HandleMusicPause(bool pause)
+    {
+        if (!pauseMusicOnPause || audioManager == null) return;
+
+        if (pause)
+        {
+            audioManager.musicAudio.Pause();
+        }
+        else
+        {
+            audioManager.musicAudio.UnPause();
         }
     }
 }
