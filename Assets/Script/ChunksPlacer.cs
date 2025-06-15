@@ -26,8 +26,14 @@ public class ChunksPlacer : MonoBehaviour
 
     private void SpawnChunk()
     {
-        int minChunk = (_coinCollector.GetCoins() > 50) ? 3 : 0;
-        Chunk newChunk = Instantiate(ChunkPrefabs[Random.Range(minChunk,ChunkPrefabs.Length)]);
+        int minChunk = 0;
+        int maxChunk = 2;
+        if (_coinCollector.GetCoins() > 50)
+        {
+            minChunk = 3;
+            maxChunk = ChunkPrefabs.Length - 1;
+        }
+        Chunk newChunk = Instantiate(ChunkPrefabs[Random.Range(minChunk,maxChunk)]);
         var oldChankPosition = spawnedChunks[spawnedChunks.Count - 1].End.transform.position;
         var offsetZ = newChunk.Begin.localPosition.x * newChunk.transform.localScale.x;
         newChunk.transform.position = new Vector3(newChunk.transform.position.x, newChunk.transform.position.y, (int) (oldChankPosition.z + offsetZ));
