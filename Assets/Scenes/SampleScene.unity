@@ -3194,6 +3194,7 @@ MonoBehaviour:
   coinsText: {fileID: 0}
   timeText: {fileID: 0}
   resumeButton: {fileID: 45937357}
+  _coinCollector: {fileID: 1858661518}
   pauseKey: 27
 --- !u!1 &1727887972
 GameObject:
