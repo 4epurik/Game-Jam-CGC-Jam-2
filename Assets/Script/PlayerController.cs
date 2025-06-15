@@ -106,4 +106,9 @@ public class PlayerController : MonoBehaviour
         speed += amount;
         Debug.Log("Speed increased! New speed: " + speed);
     }
+    public void IncreaseJump(int amount)
+    {
+        jumpForce += amount;
+        Debug.Log("Speed increased! New jumpForce: " + jumpForce);
+    }
 }
