@@ -23,7 +23,7 @@ public class GameTimer : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeElapsed / 60);
         int seconds = Mathf.FloorToInt(timeElapsed % 60);
         int milliseconds = Mathf.FloorToInt((timeElapsed * 100f) % 100f);
-        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void StopTimer()
