@@ -2718,6 +2718,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7679181944938924528, guid: 0742d9d30e7c6d944905ce7bedec6a5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679181944938924528, guid: 0742d9d30e7c6d944905ce7bedec6a5c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
