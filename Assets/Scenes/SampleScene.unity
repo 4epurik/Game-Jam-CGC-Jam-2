@@ -1677,7 +1677,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0.07754095, y: -0.53054845, z: 0.087836795, w: 0.83951795}
-  m_LocalPosition: {x: 14.06, y: 6.73, z: 17.14}
+  m_LocalPosition: {x: 14.06, y: 6.73, z: 15.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1946,13 +1946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56b3b203d4cd5841ad7ad8c9d90a698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPlayInt: 0
-  musicSlider: {fileID: 0}
-  soundEffectsSlider: {fileID: 0}
-  musicFloat: 0
-  soundEffectsFloat: 0
-  musicAudio: {fileID: 560787197}
-  soundEffectsAudio: []
 --- !u!1 &617356287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,7 +2551,7 @@ GameObject:
   - component: {fileID: 1200328545}
   - component: {fileID: 1200328544}
   m_Layer: 5
-  m_Name: Raner
+  m_Name: Ranner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2603,7 +2596,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Raner
+  m_text: Ranner
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
