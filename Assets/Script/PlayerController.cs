@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject menuUI; // Перетащите сюда меню из сцены
     [SerializeField] private GameObject timerObject;
     [SerializeField] private GameObject coinsObject;
+    [SerializeField] private GameObject lifeObject;
 
     private bool isGameStarted = false;
 
@@ -79,6 +80,8 @@ public class PlayerController : MonoBehaviour
             timerObject.SetActive(true);
         if (coinsObject != null)
             coinsObject.SetActive(true);
+        if (lifeObject != null)
+            lifeObject.SetActive(true);
     }
 
     private void Jump()
