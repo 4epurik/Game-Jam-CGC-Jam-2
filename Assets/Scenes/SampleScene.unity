@@ -1801,8 +1801,8 @@ MonoBehaviour:
   onGameOver:
     m_PersistentCalls:
       m_Calls: []
-  gameOverUI: {fileID: 0}
-  menuUI: {fileID: 0}
+  gameOverUI: {fileID: 266830570}
+  menuUI: {fileID: 878155824}
   timerObject: {fileID: 543890659}
   coinsObject: {fileID: 1798282533}
   lifeObject: {fileID: 1402975338}
@@ -4639,8 +4639,6 @@ MonoBehaviour:
   timeText: {fileID: 375764913}
   resumeButton: {fileID: 45937357}
   _coinCollector: {fileID: 1858661518}
-  targetObject: {fileID: 878155824}
-  disableObjectOnPause: 1
   pauseKey: 27
   pauseMusicOnPause: 1
 --- !u!114 &1723817495
