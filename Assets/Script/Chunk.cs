@@ -34,7 +34,7 @@ public class Chunk : MonoBehaviour
         int countBlock = safeBlocks.Count;
         if (countBlock > 1)
         {
-            List<int> coinsNumber = GetRandomNumbers(1, countBlock-1, countBlock/3);
+            List<int> coinsNumber = GetRandomNumbers(1, countBlock-1, countBlock/2);
 
             foreach (var numberBlock in coinsNumber)
             {
@@ -43,8 +43,8 @@ public class Chunk : MonoBehaviour
                 if (safeBlocks[numberBlock].gameObject.name.Contains("BOX_YelloyWall")
                     && safeBlocks[numberBlock].transform.parent.name.Contains("LongBOX_YelloyWall")) 
                 {
-                    arrayY[0] = 1.3f;
-                    arrayY[1] = 2.2f;
+                    arrayY[0] = 2.3f;
+                    arrayY[1] = 2.9f;
                 }
                 var coinY = arrayY[Random.Range(0, arrayY.Length)];
                 newCoin.transform.localPosition = new Vector3(0, coinY, 0);
