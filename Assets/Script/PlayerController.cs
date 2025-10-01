@@ -1,3 +1,4 @@
+using Script;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -27,17 +28,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject timerObject;
     [SerializeField] private GameObject coinsObject;
     [SerializeField] private GameObject lifeObject;
-
+    [SerializeField] private GameObject gameOver;
+    [SerializeField] private ReloadGame reloadGame;
+    
     private bool isGameStarted = false;
-
     void Start()
     {
+        GameTimer.Instance.Init();
+        PlayerDataManager.Instance.Init();
+        GameOver.Instance.Init();
         controller = GetComponent<CharacterController>();
         dir = Vector3.zero;
         Time.timeScale = 0f; // Игра начинается на паузе
+        if (reloadGame.needReloadGame)
+        {
+            reloadGame.needReloadGame = false;
+            StartGame();
+        }
     }
-
-
 
     private void Update()
     {
@@ -76,6 +84,8 @@ public class PlayerController : MonoBehaviour
     {
         if (menuUI != null)
             menuUI.SetActive(false); // Скрываем меню
+        if (gameOver != null)
+            gameOver.SetActive(false);
         if (timerObject != null)
             timerObject.SetActive(true);
         if (coinsObject != null)
@@ -92,7 +102,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void GameOverPlayer()
     {
         isGameStarted = false;
         gameOverUI.SetActive(true);
@@ -100,8 +110,9 @@ public class PlayerController : MonoBehaviour
         Invoke(nameof(RestartGame), restartDelay);
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
+        reloadGame.needReloadGame = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void IncreaseSpeed(int amount)

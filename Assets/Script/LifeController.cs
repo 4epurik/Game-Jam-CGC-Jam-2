@@ -12,6 +12,7 @@ namespace Script
 
         private void Start()
         {
+            SetInitialLife();
             UpdateText();
         }
 

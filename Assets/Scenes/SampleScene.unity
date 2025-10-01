@@ -773,9 +773,10 @@ GameObject:
   - component: {fileID: 266830571}
   - component: {fileID: 266830573}
   - component: {fileID: 266830574}
+  - component: {fileID: 266830575}
   m_Layer: 5
   m_Name: GameOver
-  m_TagString: Untagged
+  m_TagString: gameOver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -845,6 +846,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &266830575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266830570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37cc44e0643461a98044a291264421d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOver: {fileID: 0}
 --- !u!1 &269990732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1697,6 @@ GameObject:
   - component: {fileID: 506789028}
   - component: {fileID: 506789032}
   - component: {fileID: 506789026}
-  - component: {fileID: 506789033}
   - component: {fileID: 506789034}
   m_Layer: 0
   m_Name: Player
@@ -1738,9 +1751,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2.3927045
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.40215012, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &506789029
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1846,19 +1859,8 @@ MonoBehaviour:
   timerObject: {fileID: 543890659}
   coinsObject: {fileID: 1798282533}
   lifeObject: {fileID: 1402975338}
---- !u!114 &506789033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506789025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e449e8d5a368dcf489a840dee6140852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 375764913}
+  gameOver: {fileID: 266830570}
+  reloadGame: {fileID: 11400000, guid: ad016755887562a459a1327c8c231ece, type: 2}
 --- !u!54 &506789034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3136,7 +3138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &878155825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3417,7 +3419,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 506789032}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3684,7 +3686,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 506789032}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4701,7 +4703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264074711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07754096, y: -0.53054845, z: 0.0878368, w: 0.83951795}
+  m_LocalRotation: {x: 0.07754097, y: -0.53054845, z: 0.08783682, w: 0.83951795}
   m_LocalPosition: {x: 14.06, y: 6.73, z: 15.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5369,6 +5371,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402975338}
   m_CullTransparentMesh: 1
+--- !u!1 &1430084379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430084381}
+  - component: {fileID: 1430084380}
+  m_Layer: 0
+  m_Name: GameTimer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1430084380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430084379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e449e8d5a368dcf489a840dee6140852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerTextList:
+  - {fileID: 375764913}
+  - {fileID: 1491282935}
+  timerText: {fileID: 1227509464}
+--- !u!4 &1430084381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430084379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.06, y: 6.73, z: 15.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1491282933
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,7 +6323,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 50}
+  m_SizeDelta: {x: 94.2082, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1808416757
 MonoBehaviour:
@@ -6295,7 +6345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999
+  m_text: :999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6625,7 +6675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74cf0bd2135466fbb5c67915f2f449d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textCountCoins: {fileID: 895280449}
+  textCountCoinsList:
+  - {fileID: 1896944728}
+  - {fileID: 895280449}
+  textCountCoins: {fileID: 1808416757}
   player: {fileID: 506789032}
   coinsPerSpeedBoost: 50
   speedIncreaseAmount: 3
@@ -6676,7 +6729,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 50}
+  m_SizeDelta: {x: 92.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896944728
 MonoBehaviour:
@@ -6698,7 +6751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999
+  m_text: :999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7286,8 +7339,9 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 2136412748}
   - {fileID: 506789031}
-  - {fileID: 1264074713}
+  - {fileID: 1430084381}
   - {fileID: 1858661517}
+  - {fileID: 1264074713}
   - {fileID: 674946805}
   - {fileID: 1723817493}
   - {fileID: 148133792}
