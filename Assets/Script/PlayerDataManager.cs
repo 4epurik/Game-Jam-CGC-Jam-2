@@ -15,13 +15,26 @@ public class PlayerDataManager : MonoBehaviour
             {
                 if(GameObject.FindObjectOfType<PlayerDataManager>() == null)
                 {
-                    var singleton = new GameObject("Coin Collector");
+                    var singleton = new GameObject("PlayerDataManager");
                     instance = singleton.AddComponent<PlayerDataManager>();
                 }
                 return instance;
             }
             return instance;
         }
+    }
+    
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+    
+    public void Init()
+    {
+            
     }
     
     // Метод для сохранения времени (в секундах)

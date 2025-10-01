@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ï»¿using UnityEngine;
+=======
+using Script;
+using UnityEngine;
+>>>>>>> b0211b911fe4131a47851aeba6e16d9754d36274
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -29,12 +34,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject timerObject;
     [SerializeField] private GameObject coinsObject;
     [SerializeField] private GameObject lifeObject;
-
+    [SerializeField] private GameObject gameOver;
+    [SerializeField] private ReloadGame reloadGame;
+    
     private bool isGameStarted = false;
-
     void Start()
     {
+        GameTimer.Instance.Init();
+        PlayerDataManager.Instance.Init();
+        GameOver.Instance.Init();
         controller = GetComponent<CharacterController>();
+<<<<<<< HEAD
         anim = GetComponent<Animator>(); // Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾: Ð¸Ñ‰ÐµÐ¼ Ð°Ð½Ð¸Ð¼Ð°Ñ‚Ð¾Ñ€ Ð½Ð° Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶Ðµ
 
         dir = Vector3.zero;
@@ -48,6 +58,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+=======
+        dir = Vector3.zero;
+        Time.timeScale = 0f; // Èãðà íà÷èíàåòñÿ íà ïàóçå
+        if (reloadGame.needReloadGame)
+        {
+            reloadGame.needReloadGame = false;
+            StartGame();
+        }
+    }
+
+>>>>>>> b0211b911fe4131a47851aeba6e16d9754d36274
     private void Update()
     {
         if (!isGameStarted) return;
@@ -94,7 +115,13 @@ public class PlayerController : MonoBehaviour
     private void SetUiActive()
     {
         if (menuUI != null)
+<<<<<<< HEAD
             menuUI.SetActive(false);
+=======
+            menuUI.SetActive(false); // Ñêðûâàåì ìåíþ
+        if (gameOver != null)
+            gameOver.SetActive(false);
+>>>>>>> b0211b911fe4131a47851aeba6e16d9754d36274
         if (timerObject != null)
             timerObject.SetActive(true);
         if (coinsObject != null)
@@ -115,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void GameOverPlayer()
     {
         isGameStarted = false;
         gameOverUI.SetActive(true);
@@ -129,8 +156,9 @@ public class PlayerController : MonoBehaviour
         Invoke(nameof(RestartGame), restartDelay);
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
+        reloadGame.needReloadGame = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

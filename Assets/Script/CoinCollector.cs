@@ -1,11 +1,13 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Script
 {
     public class CoinCollector : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _textCountCoins;
+        [SerializeField] private List<TextMeshProUGUI> textCountCoinsList;
+        [SerializeField] private TextMeshProUGUI textCountCoins;
         [SerializeField] private PlayerController player;
         [SerializeField] private int coinsPerSpeedBoost = 10;
         [SerializeField] private int speedIncreaseAmount = 10;
@@ -52,7 +54,21 @@ namespace Script
         }
         public void UpdateText()
         {
-            _textCountCoins.text = ": " + coinAmount.ToString();
+            foreach (var textCount in textCountCoinsList)
+            {
+                SetText(coinAmount, textCount);
+            }
+        }
+        
+        public void SetRecordCoin(int coin)
+        {
+            SetText(coin, textCountCoins);
+        }
+        
+
+        void SetText(int coin, TextMeshProUGUI text)
+        {
+            text.text = ": " + coin.ToString();
         }
 
         public void AddCoin()

@@ -6,6 +6,7 @@ public class GameExitTrigger : MonoBehaviour
 {
     [Tooltip("Тег объекта, который должен активировать выход")]
     [SerializeField] private string playerTag = "Player";
+    [SerializeField] private string gameOverTag = "gameOver";
 
     private bool isHurt;
 
@@ -21,9 +22,9 @@ public class GameExitTrigger : MonoBehaviour
             {
                 LifeController.Instance.SetInitialLife();
                 Debug.Log("Игрок вошёл в триггер. Выход из игры...");
-                PlayerDataManager.Instance.SaveCoins(CoinCollector.Instance.GetCoins());
-                PlayerDataManager.Instance.SaveTime(GameTimer.Instance.GetElapsedTime());
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameOver.Instance.SetGameOver();
+
+                // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
