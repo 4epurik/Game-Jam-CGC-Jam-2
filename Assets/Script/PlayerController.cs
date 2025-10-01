@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private int liveScore = 1;
     [SerializeField] private GameObject backgroundMusic;
 
+    private Animator anim; // РґРѕР±Р°РІР»РµРЅРѕ: СЃСЃС‹Р»РєР° РЅР° Animator
+
     [Header("Settings")]
     [SerializeField] private int speed;
     [SerializeField] private float jumpForce;
@@ -16,14 +18,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float restartDelay = 3f;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent onGameStarted; // Событие при старте игры
-    [SerializeField] private UnityEvent onGameOver;   // Событие при проигрыше
+    [SerializeField] private UnityEvent onGameStarted; // РЎРѕР±С‹С‚РёРµ РїСЂРё СЃС‚Р°СЂС‚Рµ РёРіСЂС‹
+    [SerializeField] private UnityEvent onGameOver;   // РЎРѕР±С‹С‚РёРµ РїСЂРё РїСЂРѕРёРіСЂС‹С€Рµ
 
     [Header("References")]
     [SerializeField] private GameObject gameOverUI;
 
     [Header("UI Settings")]
-    [SerializeField] private GameObject menuUI; // Перетащите сюда меню из сцены
+    [SerializeField] private GameObject menuUI;
     [SerializeField] private GameObject timerObject;
     [SerializeField] private GameObject coinsObject;
     [SerializeField] private GameObject lifeObject;
@@ -33,17 +35,25 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>(); // РґРѕР±Р°РІР»РµРЅРѕ: РёС‰РµРј Р°РЅРёРјР°С‚РѕСЂ РЅР° РїРµСЂСЃРѕРЅР°Р¶Рµ
+
         dir = Vector3.zero;
-        Time.timeScale = 0f; // Игра начинается на паузе
+        Time.timeScale = 0f; // РРіСЂР° РЅР°С‡РёРЅР°РµС‚СЃСЏ РЅР° РїР°СѓР·Рµ
+
+        if (anim != null)
+        {
+            anim.SetBool("isGameStarted", false);
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isDead", false);
+        }
     }
-
-
 
     private void Update()
     {
-        if (!isGameStarted) return; // Блокировка управления до старта
+        if (!isGameStarted) return;
 
-        if (Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Space))
+        // РџСЂС‹Р¶РѕРє РїРѕ РєР»РёРєСѓ РјС‹С€РєРѕР№ РёР»Рё РїСЂРѕР±РµР»Сѓ
+        if ((Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Space)) && controller.isGrounded)
         {
             Jump();
         }
@@ -56,26 +66,35 @@ public class PlayerController : MonoBehaviour
         dir.z = speed;
         dir.y += gravity * Time.fixedDeltaTime;
         controller.Move(dir * Time.fixedDeltaTime);
+
+        // РµСЃР»Рё РїРµСЂСЃРѕРЅР°Р¶ РЅР° Р·РµРјР»Рµ в†’ РІС‹РєР»СЋС‡Р°РµРј РїСЂС‹Р¶РѕРє
+        if (controller.isGrounded && anim != null)
+        {
+            anim.SetBool("isJumping", false);
+        }
     }
 
-    // Вызывается кнопкой Start в UI
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ РєРЅРѕРїРєРѕР№ Start РІ UI
     public void StartGame()
     {
         isGameStarted = true;
         backgroundMusic.SetActive(true);
-        Time.timeScale = 1f; // Снимаем паузу
+        Time.timeScale = 1f;
         onGameStarted.Invoke();
 
-        isGameStarted = true;
-        Time.timeScale = 1f;
-
         SetUiActive();
+
+        // РІРєР»СЋС‡Р°РµРј Р°РЅРёРјР°С†РёСЋ Р±РµРіР°
+        if (anim != null)
+        {
+            anim.SetBool("isGameStarted", true);
+        }
     }
 
     private void SetUiActive()
     {
         if (menuUI != null)
-            menuUI.SetActive(false); // Скрываем меню
+            menuUI.SetActive(false);
         if (timerObject != null)
             timerObject.SetActive(true);
         if (coinsObject != null)
@@ -89,6 +108,10 @@ public class PlayerController : MonoBehaviour
         if (controller.isGrounded)
         {
             dir.y = jumpForce;
+            if (anim != null)
+            {
+                anim.SetBool("isJumping", true); // РІРєР»СЋС‡Р°РµРј Р°РЅРёРјР°С†РёСЋ РїСЂС‹Р¶РєР°
+            }
         }
     }
 
@@ -97,6 +120,12 @@ public class PlayerController : MonoBehaviour
         isGameStarted = false;
         gameOverUI.SetActive(true);
         onGameOver.Invoke();
+
+        if (anim != null)
+        {
+            anim.SetBool("isDead", true); // РІРєР»СЋС‡Р°РµРј Р°РЅРёРјР°С†РёСЋ СЃРјРµСЂС‚Рё
+        }
+
         Invoke(nameof(RestartGame), restartDelay);
     }
 
@@ -104,14 +133,16 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     public void IncreaseSpeed(int amount)
     {
         speed += amount;
         Debug.Log("Speed increased! New speed: " + speed);
     }
+
     public void IncreaseJump(int amount)
     {
         jumpForce += amount;
-        Debug.Log("Speed increased! New jumpForce: " + jumpForce);
+        Debug.Log("Jump increased! New jumpForce: " + jumpForce);
     }
 }
