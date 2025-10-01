@@ -1,6 +1,6 @@
 using Script;
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameExitTrigger : MonoBehaviour
 {
@@ -20,17 +20,11 @@ public class GameExitTrigger : MonoBehaviour
             if (countLife <= 0)
             {
                 LifeController.Instance.SetInitialLife();
-                            Debug.Log("Игрок вошёл в триггер. Выход из игры...");
-                
-                            // Останавливаем игру (в редакторе)
-                #if UNITY_EDITOR
-                            UnityEditor.EditorApplication.isPlaying = false;
-                #else
-                            // Закрываем приложение в билде
-                            Application.Quit();
-                #endif
+                Debug.Log("Игрок вошёл в триггер. Выход из игры...");
+                PlayerDataManager.Instance.SaveCoins(CoinCollector.Instance.GetCoins());
+                PlayerDataManager.Instance.SaveTime(GameTimer.Instance.GetElapsedTime());
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
-
         }
     }
 }

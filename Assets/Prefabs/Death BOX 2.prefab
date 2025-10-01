@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8109335952757040365}
+  - component: {fileID: 9030032685794093743}
+  - component: {fileID: 3476739816029462940}
   m_Layer: 0
   m_Name: Death BOX 2
   m_TagString: Untagged
@@ -34,6 +36,40 @@ Transform:
   - {fileID: 6696765269762982336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9030032685794093743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471740588797784820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad2c667607c00342ac2bcc3bf5c05c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+--- !u!65 &3476739816029462940
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471740588797784820}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.78212565, y: 0.46106005, z: 1.0053066}
+  m_Center: {x: 0.011238962, y: 1.4780576, z: -0.015629351}
 --- !u!1 &7204348769184883798
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3231224026024183242}
   - component: {fileID: 8090640770658782112}
+  - component: {fileID: 1132556704481717606}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -118,6 +155,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1132556704481717606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7204348769184883798}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.0000002, z: 0.08945083}
+  m_Center: {x: 0, y: -1.8739228e-17, z: -0.055274613}
 --- !u!1001 &6360067611648019902
 PrefabInstance:
   m_ObjectHideFlags: 0

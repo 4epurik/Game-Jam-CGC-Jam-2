@@ -6,9 +6,30 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
+    private static GameTimer instance;
     public TextMeshProUGUI timerText;       
     private float timeElapsed;   
     private bool isRunning = true;
+    
+    public static GameTimer Instance 
+    {
+        get
+        {
+            if(instance == null)
+            {
+                if(GameObject.FindObjectOfType<GameTimer>() == null)
+                {
+                    var singleton = new GameObject("Coin Collector");
+
+                    instance = singleton.AddComponent<GameTimer>();
+                }
+
+                return instance;
+            }
+
+            return instance;
+        }
+    }
 
     void Update()
     {

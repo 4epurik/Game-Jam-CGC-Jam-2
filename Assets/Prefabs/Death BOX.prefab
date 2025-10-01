@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8109335952757040365}
+  - component: {fileID: 3583369111281561188}
+  - component: {fileID: 3492779489706108830}
   m_Layer: 0
   m_Name: Death BOX
   m_TagString: Untagged
@@ -33,6 +35,40 @@ Transform:
   - {fileID: 5212498673698484752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3583369111281561188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471740588797784820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad2c667607c00342ac2bcc3bf5c05c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+--- !u!65 &3492779489706108830
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471740588797784820}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0154411, y: 0.7846441, z: 1.0326521}
+  m_Center: {x: 0.0071199536, y: 1.3776236, z: 0.0029188693}
 --- !u!1 &3072329906587472806
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,9 +223,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dadf3c5889261841b7fd0d1600e4458, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6512083458825446249}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dadf3c5889261841b7fd0d1600e4458, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 742628362244988326}
   m_SourcePrefab: {fileID: 100100000, guid: 6dadf3c5889261841b7fd0d1600e4458, type: 3}
 --- !u!1 &4836113116310694058 stripped
@@ -197,19 +230,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dadf3c5889261841b7fd0d1600e4458, type: 3}
   m_PrefabInstance: {fileID: 5754538815150839291}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6512083458825446249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4836113116310694058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad2c667607c00342ac2bcc3bf5c05c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTag: Player
 --- !u!65 &742628362244988326
 BoxCollider:
   m_ObjectHideFlags: 0

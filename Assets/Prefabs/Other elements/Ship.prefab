@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1912540923531868278}
+  - component: {fileID: 5800526750986942002}
+  - component: {fileID: 2963264476878766754}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -32,6 +34,40 @@ Transform:
   - {fileID: 6755706026179184558}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5800526750986942002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3021719534424630265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad2c667607c00342ac2bcc3bf5c05c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+--- !u!65 &2963264476878766754
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3021719534424630265}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0248933, y: 0.90604484, z: 2}
+  m_Center: {x: 0.00000023841858, y: 0.32988948, z: 0}
 --- !u!1001 &6506487236041449541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,9 +131,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9e38ab8e7e52c664393faf0564c5029e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5754962180318818776}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9e38ab8e7e52c664393faf0564c5029e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6188686742936140350}
   m_SourcePrefab: {fileID: 100100000, guid: 9e38ab8e7e52c664393faf0564c5029e, type: 3}
 --- !u!1 &6236014865426685204 stripped
 GameObject:
@@ -125,19 +158,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.020000005, z: 0.004832906}
   m_Center: {x: 0, y: 0, z: 0.0015157886}
---- !u!114 &6188686742936140350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6236014865426685204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad2c667607c00342ac2bcc3bf5c05c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTag: Player
 --- !u!4 &6755706026179184558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e38ab8e7e52c664393faf0564c5029e, type: 3}

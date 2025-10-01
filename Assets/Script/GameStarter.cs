@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStarter : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class GameStarter : MonoBehaviour
 
     public void StartGame()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         menuUI.SetActive(false);
         gameUI.SetActive(true);
         Time.timeScale = 1f; // Снимаем паузу, если была
