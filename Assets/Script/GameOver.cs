@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Script
@@ -7,6 +7,8 @@ namespace Script
     {
         [SerializeField] private GameOver gameOver;
         [SerializeField] private GameObject gameOverCanvas;
+        [SerializeField] private PlayerController playerController;
+        [SerializeField] private float delayForDeath = 2f;
         private static GameOver instance;
         
         public static GameOver Instance 
@@ -42,6 +44,20 @@ namespace Script
 
         public void SetGameOver()
         {
+            playerController.SetPlayerDead();
+            StartCoroutine(ShowDeathScreenAfterAnimation());
+        }
+        public void Die()
+        {
+            StartCoroutine(ShowDeathScreenAfterAnimation());
+        }
+
+        private IEnumerator ShowDeathScreenAfterAnimation()
+        {
+            // Ждём окончания анимации
+            yield return new WaitForSeconds(delayForDeath);
+
+            // Показываем экран смерти
             int currentCoins = CoinCollector.Instance.GetCoins();
             float currentTime = GameTimer.Instance.GetElapsedTime();
             int maxCoin = Mathf.Max(PlayerDataManager.Instance.LoadCoins(), currentCoins);

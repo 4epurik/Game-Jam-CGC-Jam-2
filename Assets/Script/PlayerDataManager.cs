@@ -42,7 +42,6 @@ public class PlayerDataManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat(TIME_KEY, time);
         PlayerPrefs.Save();
-        Debug.Log($"Сохранено время: {time} секунд");
     }
 
     // Метод для загрузки сохраненного времени
@@ -56,7 +55,6 @@ public class PlayerDataManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(COINS_KEY, coins);
         PlayerPrefs.Save();
-        Debug.Log($"Сохранено монет: {coins}");
     }
 
     // Метод для загрузки количества монет

@@ -6,7 +6,6 @@ public class GameExitTrigger : MonoBehaviour
 {
     [Tooltip("Тег объекта, который должен активировать выход")]
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private string gameOverTag = "gameOver";
 
     private bool isHurt;
 

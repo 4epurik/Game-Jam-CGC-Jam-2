@@ -70,9 +70,7 @@ namespace Script
         public void SetRecordCoin(int coin)
         {
             foreach (var textCount in textCountRecordCoinsList)
-            {
                 SetText(coin, textCount);
-            }
         }
         
 

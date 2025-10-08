@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -14,7 +12,6 @@ public class CameraController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Vector3 newPosition = new Vector3(transform.position.x, offset.y + player.position.y, offset.z + player.position.z);
         Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, offset.z + player.position.z);
         transform.position = newPosition;
     }

@@ -6,7 +6,6 @@ public class ScreenFlash : MonoBehaviour
     public Image flashImage;
     public float flashDuration = 0.4f;
     public int flashCount = 1;
-    private bool isFlashing = false;
 
     public void FlashEffectForDeath()
     {
@@ -15,8 +14,6 @@ public class ScreenFlash : MonoBehaviour
 
     private System.Collections.IEnumerator FlashScreen()
     {
-        isFlashing = true;
-
         for (int i = 0; i < flashCount; i++)
         {
             // Показываем с полной прозрачностью
@@ -28,7 +25,5 @@ public class ScreenFlash : MonoBehaviour
             flashImage.CrossFadeAlpha(0f, flashDuration / 2, false);
             yield return new WaitForSeconds(flashDuration / 2);
         }
-
-        isFlashing = false;
     }
 }
