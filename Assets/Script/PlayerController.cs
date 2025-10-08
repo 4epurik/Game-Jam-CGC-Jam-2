@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-Ôªøusing UnityEngine;
-=======
 using Script;
 using UnityEngine;
->>>>>>> b0211b911fe4131a47851aeba6e16d9754d36274
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -17,8 +13,8 @@ public class PlayerController : MonoBehaviour
     private Animator anim; // –¥–æ–±–∞–≤–ª–µ–Ω–æ: —Å—Å—ã–ª–∫–∞ –Ω–∞ Animator
 
     [Header("Settings")]
-    [SerializeField] private int speed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private int initSpeed = 9;
+    [SerializeField] private float initJumpForce = 9f;
     [SerializeField] private float gravity;
     [SerializeField] private float restartDelay = 3f;
 
@@ -31,20 +27,23 @@ public class PlayerController : MonoBehaviour
 
     [Header("UI Settings")]
     [SerializeField] private GameObject menuUI;
-    [SerializeField] private GameObject timerObject;
     [SerializeField] private GameObject coinsObject;
     [SerializeField] private GameObject lifeObject;
     [SerializeField] private GameObject gameOver;
     [SerializeField] private ReloadGame reloadGame;
+    [SerializeField] private GameObject recordObject;
     
     private bool isGameStarted = false;
+    private int speed;
+    private float jumpForce;
     void Start()
     {
+        speed = initSpeed;
+        jumpForce = initJumpForce;
         GameTimer.Instance.Init();
         PlayerDataManager.Instance.Init();
         GameOver.Instance.Init();
         controller = GetComponent<CharacterController>();
-<<<<<<< HEAD
         anim = GetComponent<Animator>(); // –¥–æ–±–∞–≤–ª–µ–Ω–æ: –∏—â–µ–º –∞–Ω–∏–º–∞—Ç–æ—Ä –Ω–∞ –ø–µ—Ä—Å–æ–Ω–∞–∂–µ
 
         dir = Vector3.zero;
@@ -56,19 +55,14 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJumping", false);
             anim.SetBool("isDead", false);
         }
-    }
-
-=======
         dir = Vector3.zero;
-        Time.timeScale = 0f; // »„‡ Ì‡˜ËÌ‡ÂÚÒˇ Ì‡ Ô‡ÛÁÂ
+        Time.timeScale = 0f;
         if (reloadGame.needReloadGame)
         {
             reloadGame.needReloadGame = false;
             StartGame();
         }
     }
-
->>>>>>> b0211b911fe4131a47851aeba6e16d9754d36274
     private void Update()
     {
         if (!isGameStarted) return;
@@ -115,15 +109,11 @@ public class PlayerController : MonoBehaviour
     private void SetUiActive()
     {
         if (menuUI != null)
-<<<<<<< HEAD
             menuUI.SetActive(false);
-=======
-            menuUI.SetActive(false); // —Í˚‚‡ÂÏ ÏÂÌ˛
         if (gameOver != null)
             gameOver.SetActive(false);
->>>>>>> b0211b911fe4131a47851aeba6e16d9754d36274
-        if (timerObject != null)
-            timerObject.SetActive(true);
+        if (recordObject != null)
+            recordObject.SetActive(true);
         if (coinsObject != null)
             coinsObject.SetActive(true);
         if (lifeObject != null)

@@ -6,6 +6,7 @@ namespace Script
     public class GameOver : MonoBehaviour
     {
         [SerializeField] private GameOver gameOver;
+        [SerializeField] private GameObject gameOverCanvas;
         private static GameOver instance;
         
         public static GameOver Instance 
@@ -31,7 +32,7 @@ namespace Script
             {
                 instance = this;
             }
-            gameObject.SetActive(false);
+            gameOverCanvas.SetActive(false);
         }
 
         public void Init()
@@ -51,7 +52,7 @@ namespace Script
             CoinCollector.Instance.SetRecordCoin(maxCoin);
             GameTimer.Instance.UpdateTimerUI();
             GameTimer.Instance.SetRecordTime(maxTime);
-            gameObject.SetActive(true);
+            gameOverCanvas.SetActive(true);
 
             Time.timeScale = 0f;
             Cursor.visible = true;

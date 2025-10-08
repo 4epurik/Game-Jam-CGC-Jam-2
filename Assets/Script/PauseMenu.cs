@@ -74,8 +74,8 @@ public class PauseMenu : MonoBehaviour
         TimeSpan timeSpan = TimeSpan.FromSeconds(gameTime);
         string timeString = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
 
-        coinsText.text = $": {_coinCollector.GetCoins().ToString()}";
-        timeText.text = $"Время: {timeString}";
+        coinsText.text = $":{_coinCollector.GetCoins().ToString()}";
+        // timeText.text = $"Время: {timeString}";
     }
 
     // Метод для кнопки "Продолжить"

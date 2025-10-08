@@ -53,7 +53,7 @@ namespace Script
             var countLifeText = countLife.ToString();
             if (countLife < 0)
                 countLifeText = "0";
-            _textCountLife.text = ": " + countLifeText;
+            _textCountLife.text = ":" + countLifeText;
         }
 
         public void UpdateLife(bool reduceLife = false)

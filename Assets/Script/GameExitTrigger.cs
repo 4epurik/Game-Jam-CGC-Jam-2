@@ -23,8 +23,12 @@ public class GameExitTrigger : MonoBehaviour
                 LifeController.Instance.SetInitialLife();
                 Debug.Log("Игрок вошёл в триггер. Выход из игры...");
                 GameOver.Instance.SetGameOver();
-
-                // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                var screenFlach = other.GetComponent<ScreenFlash>();
+                if (screenFlach != null)
+                    screenFlach.FlashEffectForDeath();
             }
         }
     }
