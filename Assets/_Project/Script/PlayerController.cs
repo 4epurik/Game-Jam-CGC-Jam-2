@@ -1,11 +1,12 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 dir;
-    [Header("Settings")]
-    [SerializeField] private int initSpeed = 9;
+    [Header("Settings")] [SerializeField] private int initSpeed = 9;
     [SerializeField] private float initJumpForce = 9f;
     [SerializeField] private float baseGravity = -28f; // Убедись, что в Inspector отрицательное
     [SerializeField] private Animator anim;
@@ -13,8 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashDuration = 0.2f; // Длительность рывка
     [SerializeField] private float dashCooldown = 1f; // Кулдаун рывка
     [SerializeField] private int maxJumps = 2; // Максимум прыжков (2 для двойного)
-    [SerializeField] private float gravityScale = 1f;
-    
+
     private bool isGameStarted = false;
     private int speed;
     private float jumpForce;
@@ -22,13 +22,14 @@ public class PlayerController : MonoBehaviour
     private bool isDashing; // Флаг рывка
     private float dashTimer; // Таймер рывка
     private float dashCooldownTimer; // Таймер кулдауна рывка
-    private float gravity;
-    
+ 
+
     void Start()
     {
         speed = initSpeed;
         jumpForce = initJumpForce;
         jumpCount = 0;
+        SetSpeed(initSpeed);
         controller = GetComponent<CharacterController>();
         dir = Vector3.zero;
         if (anim != null)
@@ -43,22 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (!isGameStarted) return;
-
-        // Прыжок по клику мышкой или пробелу
-        if ((Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Space)) && jumpCount < maxJumps)
-        {
-            Jump();
-        }
-
-        // Рывок по кнопке (например, Shift или правая кнопка мыши)
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetMouseButtonDown(1))
-        {
-            if (dashCooldownTimer <= 0f && !isDashing)
-            {
-                StartDash();
-            }
-        }
-
+        
         // Обновление таймеров
         if (isDashing)
         {
@@ -70,9 +56,29 @@ public class PlayerController : MonoBehaviour
                     anim.SetBool("isDashing", false);
             }
         }
+
         if (dashCooldownTimer > 0f)
         {
             dashCooldownTimer -= Time.deltaTime;
+        }
+    }
+
+    /// <summary>
+    /// from input System
+    /// </summary>
+    [UsedImplicitly]
+    public void OnJump()
+    {
+        if (jumpCount < maxJumps)
+            Jump();
+    }
+    
+    [UsedImplicitly]
+    public void OnDash()
+    {
+        if (dashCooldownTimer <= 0f && !isDashing)
+        {
+            StartDash();
         }
     }
 
@@ -119,6 +125,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartDash()
     {
+        dir.y = .1f;
         isDashing = true;
         dashTimer = dashDuration;
         dashCooldownTimer = dashCooldown + dashDuration; // Кулдаун начинается сразу
@@ -129,7 +136,6 @@ public class PlayerController : MonoBehaviour
     public void IncreaseSpeed(int amount)
     {
         speed += amount;
-        UpdateGravity();
     }
 
     public void IncreaseJump(int amount)
@@ -140,12 +146,6 @@ public class PlayerController : MonoBehaviour
     public void SetSpeed(int newSpeed)
     {
         speed = newSpeed;
-        UpdateGravity();
-    }
-
-    private void UpdateGravity()
-    {
-        gravity = baseGravity * (1f + gravityScale * (speed - initSpeed) / initSpeed);
     }
     
     public void SetPlayerDead()
