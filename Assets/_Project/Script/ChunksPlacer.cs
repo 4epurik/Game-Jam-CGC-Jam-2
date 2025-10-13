@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ChunksPlacer : MonoBehaviour
 {
-    [SerializeField] private CoinCollector _coinCollector;
     public Transform Player;
     public Chunk[] ChunkPrefabs;
     public Chunk FirstChunk;
-
+    private CoinCollector coinCollector => CoinCollector.Instance;
     private List<Chunk> spawnedChunks = new List<Chunk>();
 
     private void Start()
@@ -18,7 +17,7 @@ public class ChunksPlacer : MonoBehaviour
 
     private void Update()
     {
-        if (Player.position.z > spawnedChunks[spawnedChunks.Count - 1].End.position.z - 120)
+        if (Player.position.z > spawnedChunks[^1].End.position.z - 120)
         {
             SpawnChunk();
         }
@@ -28,13 +27,15 @@ public class ChunksPlacer : MonoBehaviour
     {
         int minChunk = 0;
         int maxChunk = 2;
-        if (_coinCollector.GetCoins() > 50)
+        
+        if (coinCollector.GetCoins() > 50)
         {
             minChunk = 3;
             maxChunk = ChunkPrefabs.Length - 1;
         }
+        
         Chunk newChunk = Instantiate(ChunkPrefabs[Random.Range(minChunk,maxChunk)]);
-        var oldChankPosition = spawnedChunks[spawnedChunks.Count - 1].End.transform.position;
+        var oldChankPosition = spawnedChunks[^1].End.transform.position;
         var offsetZ = newChunk.Begin.localPosition.x * newChunk.transform.localScale.x;
         newChunk.transform.position = new Vector3(newChunk.transform.position.x, newChunk.transform.position.y, (int) (oldChankPosition.z + offsetZ));
         spawnedChunks.Add(newChunk);

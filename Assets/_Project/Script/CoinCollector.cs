@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,11 +9,15 @@ namespace Script
     {
         [SerializeField] private List<TextMeshProUGUI> textCountCoinsList;
         [SerializeField] private List<TextMeshProUGUI> textCountRecordCoinsList;
-        [SerializeField] private PlayerController player;
+        
+        //[SerializeField] private PlayerController player;
         [SerializeField] private int coinsPerSpeedBoost = 10;
         [SerializeField] private int speedIncreaseAmount = 10;
         [SerializeField] private int jumpIncreaseAmount = 3;
         [SerializeField] private int maxCoinAmountForBoost = 200;
+
+        public event Action<int> OnSpeedIncreased;
+        
         private static CoinCollector instance;
         private int coinAmount = 0;
         private int recordCoinCount;
@@ -28,19 +33,18 @@ namespace Script
         {
             get
             {
-                if(instance == null)
-                {
-                    if(GameObject.FindObjectOfType<CoinCollector>() == null)
-                    {
-                        var singleton = new GameObject("Coin Collector");
-
-                        instance = singleton.AddComponent<CoinCollector>();
-                    }
-
+                if (instance != null) 
                     return instance;
+                
+                if(GameObject.FindObjectOfType<CoinCollector>() == null)
+                {
+                    var singleton = new GameObject("Coin Collector");
+
+                    instance = singleton.AddComponent<CoinCollector>();
                 }
 
                 return instance;
+
             }
         }
         
@@ -56,6 +60,7 @@ namespace Script
         {
             
         }
+        
         public void UpdateText()
         {
             foreach (var textCount in textCountCoinsList)
@@ -85,7 +90,8 @@ namespace Script
             UpdateText();
             if (coinAmount % coinsPerSpeedBoost == 0 && coinAmount < maxCoinAmountForBoost )
             {
-                player.IncreaseSpeed(speedIncreaseAmount);
+                OnSpeedIncreased?.Invoke(speedIncreaseAmount);
+                //player.IncreaseSpeed(speedIncreaseAmount);
                 //player.IncreaseJump(jumpIncreaseAmount);
             }
         }

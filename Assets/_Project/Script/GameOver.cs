@@ -44,6 +44,7 @@ namespace Script
 
         public void SetGameOver()
         {
+            GameStateManager.Instance.EndGame();
             playerController.SetPlayerDead();
             StartCoroutine(ShowDeathScreenAfterAnimation());
         }

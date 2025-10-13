@@ -4,14 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class GameExitTrigger : MonoBehaviour
 {
-    [Tooltip("Тег объекта, который должен активировать выход")]
+    [Tooltip("РўРµРі РѕР±СЉРµРєС‚Р°, РєРѕС‚РѕСЂС‹Р№ РґРѕР»Р¶РµРЅ Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ РІС‹С…РѕРґ")]
     [SerializeField] private string playerTag = "Player";
 
     private bool isHurt;
 
     private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, вошёл ли объект с нужным тегом
+        // РџСЂРѕРІРµСЂСЏРµРј, РІРѕС€С‘Р» Р»Рё РѕР±СЉРµРєС‚ СЃ РЅСѓР¶РЅС‹Рј С‚РµРіРѕРј
         if (other.CompareTag(playerTag) && !isHurt)
         {
             isHurt = true;
@@ -20,7 +20,7 @@ public class GameExitTrigger : MonoBehaviour
             if (countLife <= 0)
             {
                 LifeController.Instance.SetInitialLife();
-                Debug.Log("Игрок вошёл в триггер. Выход из игры...");
+                Debug.Log("РРіСЂРѕРє РІРѕС€С‘Р» РІ С‚СЂРёРіРіРµСЂ. Р’С‹С…РѕРґ РёР· РёРіСЂС‹...");
                 GameOver.Instance.SetGameOver();
             }
             else

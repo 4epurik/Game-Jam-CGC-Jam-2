@@ -11,8 +11,8 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private float restartDelay = 3f;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent onGameStarted; // Событие при старте игры
-    [SerializeField] private UnityEvent onGameOver;   // Событие при проигрыше
+    [SerializeField] private UnityEvent onGameStarted; // РЎРѕР±С‹С‚РёРµ РїСЂРё СЃС‚Р°СЂС‚Рµ РёРіСЂС‹
+    [SerializeField] private UnityEvent onGameOver;   // РЎРѕР±С‹С‚РёРµ РїСЂРё РїСЂРѕРёРіСЂС‹С€Рµ
 
     [Header("References")]
     [SerializeField] private GameObject gameOverUI;
@@ -45,7 +45,7 @@ public class GameStarter : MonoBehaviour
         if (!isGameStarted) return;
     }
     
-    // Вызывается кнопкой Start в UI
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ РєРЅРѕРїРєРѕР№ Start РІ UI
     public void StartGame()
     {
         isGameStarted = true;
@@ -53,6 +53,7 @@ public class GameStarter : MonoBehaviour
         Time.timeScale = 1f;
         onGameStarted.Invoke();
         SetUiActive();
+        GameStateManager.Instance.StartGame();
         playerController.StartPlayer();
     }
 
