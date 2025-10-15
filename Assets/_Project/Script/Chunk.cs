@@ -16,23 +16,24 @@ public class Chunk : MonoBehaviour
     { 
         List<GameObject> safeBlocks = FindChildWithTag(gameObject, "safeBlock");
         int countBlock = safeBlocks.Count;
-        if (countBlock > 1)
-        {
-            List<int> coinsNumber = GetRandomNumbers(1, countBlock-1, countBlock/2);
+        
+        if (countBlock <= 1) 
+            return;
+        
+        List<int> blocksNumbers = GetRandomNumbers(1, countBlock-1, countBlock/2);
 
-            foreach (var numberBlock in coinsNumber)
+        foreach (var numberBlock in blocksNumbers)
+        {
+            var newCoin = Instantiate(_coin, safeBlocks[numberBlock].transform);
+            float[] arrayY = {2f, 2.9f};
+            if (safeBlocks[numberBlock].gameObject.name.Contains("BOX_YelloyWall")
+                && safeBlocks[numberBlock].transform.parent.name.Contains("LongBOX_YelloyWall")) 
             {
-                var newCoin = Instantiate(_coin, safeBlocks[numberBlock].transform);
-                float[] arrayY = new float[] {2f, 2.9f};
-                if (safeBlocks[numberBlock].gameObject.name.Contains("BOX_YelloyWall")
-                    && safeBlocks[numberBlock].transform.parent.name.Contains("LongBOX_YelloyWall")) 
-                {
-                    arrayY[0] = 2.3f;
-                    arrayY[1] = 2.9f;
-                }
-                var coinY = arrayY[Random.Range(0, arrayY.Length)];
-                newCoin.transform.localPosition = new Vector3(0, coinY, 0);
+                arrayY[0] = 2.3f;
+                arrayY[1] = 2.9f;
             }
+            var coinY = arrayY[Random.Range(0, arrayY.Length)];
+            newCoin.transform.localPosition = new Vector3(0, coinY, 0);
         }
     }
     

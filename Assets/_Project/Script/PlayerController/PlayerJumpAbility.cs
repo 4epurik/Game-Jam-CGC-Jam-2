@@ -9,10 +9,8 @@ public class PlayerJumpAbility : MonoBehaviour
     
     private int jumpCount;
     private AnimationController animationController;
-
     private MovementData movementData;
-
-
+    
     public bool IsJumping => jumpCount > 0; // Прыжок считается активным, пока count > 0
 
     public void Initialize(MovementData movementData, AnimationController anim)

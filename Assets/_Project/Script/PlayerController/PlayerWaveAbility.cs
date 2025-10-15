@@ -11,19 +11,17 @@ public class PlayerWaveAbility : MonoBehaviour
     [SerializeField] private LayerMask waveLayerMask;
     [SerializeField] private float waveActivationThreshold = 0.8f;
 
-    // Ввод
+
     private InputAction waveDirectionAction;
     private Vector2 lastWaveDirection;
-
     private MovementData movementData;
-    // Таймеры
     private float waveTimer;
     private float waveCooldownTimer;
 
-    // Публичное свойство для доступа к импульсу извне
+    
     public Vector3 WaveImpulse { get; private set; } = Vector3.zero;
     
-    // Инициализация
+
     public void Initialize(PlayerInput playerInput, MovementData movementData)
     {
         this.movementData = movementData;
@@ -88,7 +86,6 @@ public class PlayerWaveAbility : MonoBehaviour
             WaveImpulse = calculatedImpulse; // Сохраняем импульс
             waveTimer = waveActiveTime;      // Запускаем таймер активности
             
-            // Оповещаем PlayerController о новом импульсе
             Debug.Log($"Wave activated! Hit: {hit.collider.name}");
             movementData.Dir.y = waveForce;
         }

@@ -37,16 +37,12 @@ public class PlayerDashAbility : MonoBehaviour
     
     private void Update()
     {
-        if (!GameStateManager.Instance.IsGameStarted) return;
-        
-        // Обновление таймеров рывка
         if (IsDashing)
         {
             dashTimer -= Time.deltaTime;
             if (dashTimer <= 0f)
             {
                 IsDashing = false;
-                // Анимация
                 animationController?.SetDashing(false);
             }
         }
@@ -59,10 +55,8 @@ public class PlayerDashAbility : MonoBehaviour
     {
         IsDashing = true;
         dashTimer = dashDuration;
-        // Кулдаун начинается сразу после активации, плюс длительность рывка
         dashCooldownTimer = dashCooldown + dashDuration;
-        movementData.Dir.y = 0.01f;   
-        // Анимация
+        movementData.Dir.y = 0.01f;
         animationController?.SetDashing(true);
     }
 }

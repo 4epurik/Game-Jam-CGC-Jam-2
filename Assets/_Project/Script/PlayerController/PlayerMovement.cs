@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float baseGravity = -28f;
     [SerializeField] private int initSpeed = 9;
+    [SerializeField] private int speedIncreased = 1;
     
     private int speed;
     private AnimationController animationController;
@@ -33,6 +34,6 @@ public class PlayerMovement : MonoBehaviour
         animationController?.SetRunning(true);
     }
     
-    public void IncreaseSpeed(int amount) { speed += amount; }
+    public void IncreaseSpeed() { speed += speedIncreased; }
     public void SetSpeed(int newSpeed) { speed = newSpeed; }
 }

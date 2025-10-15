@@ -8,7 +8,7 @@ public class ChunksPlacer : MonoBehaviour
     public Chunk[] ChunkPrefabs;
     public Chunk FirstChunk;
     private CoinCollector coinCollector => CoinCollector.Instance;
-    private List<Chunk> spawnedChunks = new List<Chunk>();
+    private List<Chunk> spawnedChunks = new ();
 
     private void Start()
     {
@@ -18,9 +18,7 @@ public class ChunksPlacer : MonoBehaviour
     private void Update()
     {
         if (Player.position.z > spawnedChunks[^1].End.position.z - 120)
-        {
             SpawnChunk();
-        }
     }
 
     private void SpawnChunk()
@@ -28,7 +26,7 @@ public class ChunksPlacer : MonoBehaviour
         int minChunk = 0;
         int maxChunk = 2;
         
-        if (coinCollector.GetCoins() > 50)
+        if (coinCollector.CoinAmount > 50)
         {
             minChunk = 3;
             maxChunk = ChunkPrefabs.Length - 1;

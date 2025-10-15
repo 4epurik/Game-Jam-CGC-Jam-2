@@ -9,7 +9,6 @@ public class MovementData
    public Vector3 Dir;
 }
 
-// Добавим RequireComponent для обеспечения наличия всех нужных компонентов
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
@@ -30,17 +29,9 @@ public class PlayerController : MonoBehaviour
 
     [UsedImplicitly]
     public void OnDash() => dashAbility.TryDash();
-    
-    public void IncreaseSpeed(int amount) => movement.IncreaseSpeed(amount);
-    public void SetSpeed(int newSpeed) => movement.SetSpeed(newSpeed);
-    public void StartPlayer() => movement.StartPlayer();
+    [UsedImplicitly]
+    public void OnPause() => GameStateManager.Instance.SetPause(true);
 
-    public void SetPlayerDead()
-    {
-        movement.SetSpeed(0);
-        animationController?.SetDead();
-    }
-    
     private void Awake()
     {
         movementData = new MovementData();
@@ -56,14 +47,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         CoinCollector.Instance.OnSpeedIncreased += IncreaseSpeed;
-        GameStarter.Instance.OnGameStarted += StartPlayer;
+        LifeController.Instance.OnPlayerDeath += SetPlayerDead;
         
         animationController.Initialize();
+        movement.StartPlayer();
     }
     
     private void FixedUpdate()
     {
-        if (!GameStateManager.Instance.IsGameStarted) return;
         if (dashAbility.IsDashing)
             dashAbility.Dash();
         else
@@ -75,24 +66,8 @@ public class PlayerController : MonoBehaviour
         
         if (controller.isGrounded)
             jumpAbility.ResetJumps();
-        
-        /*if (!GameStateManager.Instance.IsGameStarted) return;
-
-        dir.z = isDashing ? dashSpeed : speed;
-        if (!isDashing) 
-            dir.y += baseGravity * Time.fixedDeltaTime;
-        
-        controller.Move(dir * Time.fixedDeltaTime);
-
-        if (controller.isGrounded)
-        {
-            jumpCount = 0;
-            if (animationController != null && !isDashing) animationController.SetJumping(false);
-        }*/
     }
     
-  
-
     private void OnEnable()
     {
         if (playerInput != null) playerInput.actions.Enable();
@@ -107,7 +82,11 @@ public class PlayerController : MonoBehaviour
     {
         if (CoinCollector.Instance != null)
             CoinCollector.Instance.OnSpeedIncreased -= IncreaseSpeed;
-        if (GameStarter.Instance != null)
-            GameStarter.Instance.OnGameStarted -= StartPlayer;
+    }
+    private void IncreaseSpeed() => movement.IncreaseSpeed();
+    private void SetPlayerDead()
+    {
+        movement.SetSpeed(0);
+        animationController?.SetDead();
     }
 }

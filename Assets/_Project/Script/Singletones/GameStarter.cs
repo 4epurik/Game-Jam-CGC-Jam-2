@@ -5,18 +5,12 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 public sealed class GameStarter : SingletonBase<GameStarter>
 {
-    public event Action OnGameStarted; // Событие при старте игры
-    public event Action OnGameOver;   // Событие при проигрыше
-
-    
-    [SerializeField] private GameObject backgroundMusic;
-    [SerializeField] private PlayerController playerController;
-
     [Header("Settings")]
     [SerializeField] private float restartDelay = 3f;
     
     [Header("References")]
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject backgroundMusic;
 
     [Header("UI Settings")]
     [SerializeField] private GameObject menuUI;
@@ -26,14 +20,13 @@ public sealed class GameStarter : SingletonBase<GameStarter>
     [SerializeField] private ReloadGame reloadGame;
     [SerializeField] private GameObject recordObject;
     
+    public event Action OnGameStarted; // Событие при старте игры
+    public event Action OnGameOver;   // Событие при проигрыше
+    
     private bool isGameStarted = false;
 
     void Start()
     {
-        GameTimer.Instance.Init();
-        PlayerDataManager.Instance.Init();
-        GameOver.Instance.Init();
-
         Time.timeScale = 0f;
         if (reloadGame.needReloadGame)
         {
@@ -51,7 +44,6 @@ public sealed class GameStarter : SingletonBase<GameStarter>
         OnGameStarted?.Invoke();
         SetUiActive();
         GameStateManager.Instance.StartGame();
-        //playerController.StartPlayer();
     }
 
     private void SetUiActive()

@@ -1,41 +1,10 @@
 ﻿using UnityEngine;
 
-public class PlayerDataManager : MonoBehaviour
+public class PlayerDataManager : SingletonBase<PlayerDataManager>
 {
     // Ключи для PlayerPrefs
     private const string TIME_KEY = "BestTime";
     private const string COINS_KEY = "TotalCoins";
-    private static PlayerDataManager instance;
-    
-    public static PlayerDataManager Instance 
-    {
-        get
-        {
-            if(instance == null)
-            {
-                if(GameObject.FindObjectOfType<PlayerDataManager>() == null)
-                {
-                    var singleton = new GameObject("PlayerDataManager");
-                    instance = singleton.AddComponent<PlayerDataManager>();
-                }
-                return instance;
-            }
-            return instance;
-        }
-    }
-    
-    void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-    }
-    
-    public void Init()
-    {
-            
-    }
     
     // Метод для сохранения времени (в секундах)
     public void SaveTime(float time)
