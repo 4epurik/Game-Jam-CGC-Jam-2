@@ -3,47 +3,52 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator anim;
+    private string isRunningStr = "isRunning";
+    private string isJumpingStr = "isJumping";
+    private string isDashingStr = "isDashing";
+    private string isDeadStr = "isDead";
+
 
     public void Initialize()
     {
         if (anim != null)
         {
-            anim.SetBool("isRunning", false);
-            anim.SetBool("isJumping", false);
-            anim.SetBool("isDashing", false);
-            anim.SetBool("isDead", false);
+            anim.SetBool(isRunningStr, false);
+            anim.SetBool(isJumpingStr, false);
+            anim.SetBool(isDashingStr, false);
+            anim.SetBool(isDeadStr, false);
         }
     }
 
     public void SetRunning(bool isRunning)
     {
         if (anim != null)
-            anim.SetBool("isRunning", isRunning);
+            anim.SetBool(isRunningStr, isRunning);
     }
 
     public void SetJumping(bool isJumping)
     {
         if (anim != null)
         {
-            anim.SetBool("isRunning", !isJumping);
-            anim.SetBool("isJumping", isJumping);
+            anim.SetBool(isRunningStr, !isJumping);
+            anim.SetBool(isJumpingStr, isJumping);
         }
     }
 
     public void SetDashing(bool isDashing)
     {
         if (anim != null)
-            anim.SetBool("isDashing", isDashing);
+            anim.SetBool(isDashingStr, isDashing);
     }
 
     public void SetDead()
     {
         if (anim != null)
         {
-            anim.SetBool("isRunning", false);
-            anim.SetBool("isJumping", false);
-            anim.SetBool("isDashing", false);
-            anim.SetBool("isDead", true);
+            anim.SetBool(isRunningStr, false);
+            anim.SetBool(isJumpingStr, false);
+            anim.SetBool(isDashingStr, false);
+            anim.SetBool(isDeadStr, true);
         }
     }
 }

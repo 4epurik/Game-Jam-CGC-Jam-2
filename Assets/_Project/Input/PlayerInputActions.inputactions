@@ -132,17 +132,6 @@
                     "action": "WaveDirection",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "4013680a-7259-4ecc-aa78-357ffd1b1fe3",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WaveDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

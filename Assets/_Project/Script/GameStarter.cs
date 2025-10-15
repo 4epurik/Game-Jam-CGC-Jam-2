@@ -1,19 +1,20 @@
+using System;
 using Script;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-public class GameStarter : MonoBehaviour
+public sealed class GameStarter : SingletonBase<GameStarter>
 {
+    public event Action OnGameStarted; // Событие при старте игры
+    public event Action OnGameOver;   // Событие при проигрыше
+
+    
     [SerializeField] private GameObject backgroundMusic;
     [SerializeField] private PlayerController playerController;
 
     [Header("Settings")]
     [SerializeField] private float restartDelay = 3f;
-
-    [Header("Events")]
-    [SerializeField] private UnityEvent onGameStarted; // Событие при старте игры
-    [SerializeField] private UnityEvent onGameOver;   // Событие при проигрыше
-
+    
     [Header("References")]
     [SerializeField] private GameObject gameOverUI;
 
@@ -40,21 +41,17 @@ public class GameStarter : MonoBehaviour
             StartGame();
         }
     }
-    private void Update()
-    {
-        if (!isGameStarted) return;
-    }
-    
+
     // Вызывается кнопкой Start в UI
     public void StartGame()
     {
         isGameStarted = true;
         backgroundMusic.SetActive(true);
         Time.timeScale = 1f;
-        onGameStarted.Invoke();
+        OnGameStarted?.Invoke();
         SetUiActive();
         GameStateManager.Instance.StartGame();
-        playerController.StartPlayer();
+        //playerController.StartPlayer();
     }
 
     private void SetUiActive()
@@ -75,7 +72,7 @@ public class GameStarter : MonoBehaviour
     {
         isGameStarted = false;
         gameOverUI.SetActive(true);
-        onGameOver.Invoke();
+        OnGameOver.Invoke();
 
         Invoke(nameof(RestartGame), restartDelay);
     }

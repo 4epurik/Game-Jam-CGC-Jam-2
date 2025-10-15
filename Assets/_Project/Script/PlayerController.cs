@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+/*using JetBrains.Annotations;
 using Script;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -118,7 +118,8 @@ public class PlayerController : MonoBehaviour
         if (!GameStateManager.Instance.IsGameStarted) return;
 
         dir.z = isDashing ? dashSpeed : speed;
-        if (!isDashing) dir.y += baseGravity * Time.fixedDeltaTime;
+        if (!isDashing) 
+        dir.y += baseGravity * Time.fixedDeltaTime;
         
         controller.Move(dir * Time.fixedDeltaTime);
 
@@ -203,4 +204,4 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput != null) playerInput.actions.Disable();
     }
-}
+}*/
