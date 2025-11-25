@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Script;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,7 +44,7 @@ public sealed class GameStarter : SingletonBase<GameStarter>
         Time.timeScale = 1f;
         OnGameStarted?.Invoke();
         SetUiActive();
-        GameStateManager.Instance.StartGame();
+        GameStateManager.Instance.StartGame().Forget();
     }
 
     private void SetUiActive()

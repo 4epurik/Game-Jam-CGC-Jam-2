@@ -1,34 +1,28 @@
 using System;
 using System.Collections.Generic;
+using Characteristics;
 using Script;
 using TMPro;
 using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    public TextMeshProUGUI timerText;
-
+    private GameTimeController time => GameTimeController.Instance;
+    private UtilityManager utility => UtilityManager.Instance;
+    private LifeController life => LifeController.Instance;
+    
+    [SerializeField] private TextMeshProUGUI timerText;
+    
     private float timeElapsed;
-
+    
     private void Start()
     {
-        LifeController.Instance.OnPlayerDeath += InstanceOnOnPlayerDeath;
+        life.OnPlayerDeath += () => time.SetTimeCounted(timeElapsed);
     }
-
-    private void InstanceOnOnPlayerDeath()
-    {
-        GameTimeController.Instance.SetTimeCounted(timeElapsed);
-    }
-
+    
     private void Update()
     {
         timeElapsed += Time.deltaTime;
-        timerText.text = GameTimeController.TimeToText(timeElapsed);
-    }
-
-    private void OnDestroy()
-    {
-        if (LifeController.Instance != null)
-            LifeController.Instance.OnPlayerDeath -= InstanceOnOnPlayerDeath;
+        timerText.text = utility.TimeToText(timeElapsed);
     }
 }

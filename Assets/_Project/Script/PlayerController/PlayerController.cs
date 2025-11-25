@@ -12,8 +12,11 @@ public class MovementData
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Components")] 
+    private CoinCollector coin => CoinCollector.Instance;
+    private LifeController life => LifeController.Instance;
+    private GameStateManager game => GameStateManager.Instance;
     
+    [Header("Components")]
     [SerializeField] private AnimationController animationController;
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private PlayerJumpAbility jumpAbility;
@@ -24,13 +27,9 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private MovementData movementData;
 
-    [UsedImplicitly]
-    public void OnJump() => jumpAbility.TryJump();
-
-    [UsedImplicitly]
-    public void OnDash() => dashAbility.TryDash();
-    [UsedImplicitly]
-    public void OnPause() => GameStateManager.Instance.SetPause(true);
+    [UsedImplicitly] public void OnJump() => jumpAbility.TryJump();
+    [UsedImplicitly] public void OnDash() => dashAbility.TryDash();
+    [UsedImplicitly] public void OnPause() => game.SetPause(true);
 
     private void Awake()
     {
@@ -46,8 +45,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        CoinCollector.Instance.OnSpeedIncreased += IncreaseSpeed;
-        LifeController.Instance.OnPlayerDeath += SetPlayerDead;
+        coin.OnSpeedIncreased += IncreaseSpeed;
+        life.OnPlayerDeath += SetPlayerDead;
         
         animationController.Initialize();
         movement.StartPlayer();
@@ -77,12 +76,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput != null) playerInput.actions.Disable();
     }
-
-    private void OnDestroy()
-    {
-        if (CoinCollector.Instance != null)
-            CoinCollector.Instance.OnSpeedIncreased -= IncreaseSpeed;
-    }
+    
     private void IncreaseSpeed() => movement.IncreaseSpeed();
     private void SetPlayerDead()
     {

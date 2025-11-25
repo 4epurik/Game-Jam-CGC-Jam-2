@@ -1,17 +1,20 @@
 using System.Collections.Generic;
+using Characteristics;
 using TMPro;
 using UnityEngine;
 
 public class GameTimeController : SingletonBase<GameTimeController>
 {
+    private UtilityManager utility => UtilityManager.Instance;
+    
+    public float TotalTime { get; private set; }
+    
     protected override void Awake()
     {
         base.Awake();
         Debug.Log("GameTimeController loaded");
     }
-
-    public float TotalTime { get; private set; }
-
+    
     public void SetTimeCounted(float time)
     {
         TotalTime = time;
@@ -19,13 +22,8 @@ public class GameTimeController : SingletonBase<GameTimeController>
 
     public string GetTimeString()
     {
-        return TimeToText(TotalTime);
+        return utility.TimeToText(TotalTime);
     }
     
-    public static string TimeToText(float timeval)
-    {
-        int minutes = Mathf.FloorToInt(timeval / 60);
-        int seconds = Mathf.FloorToInt(timeval % 60);
-        return $"{minutes:00}:{seconds:00}";
-    }
+ 
 }
